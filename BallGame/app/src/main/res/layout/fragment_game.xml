@@ -1,9 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout android:id="@+id/relout" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.danialchowdhry.ballgame.Game">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/ballView"
+        android:layout_width="wrap_content"
+        android:layout_height="300px"
+        android:layout_centerInParent="true"
+     />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/questionView"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/ballView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65px"
+        android:text="@string/question"
+     />
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionView"
+        android:textSize="50px"
+        android:textColor="@color/abc_search_url_text_pressed"
+        android:hint="@string/edit_message" />
+
+    <Button android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/edit_message"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:text="@string/button_submit"
+        android:onClick="checkAnswer"/>
+    <TextView
+        android:id="@+id/resultView"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="65px"
+        />
+</RelativeLayout>

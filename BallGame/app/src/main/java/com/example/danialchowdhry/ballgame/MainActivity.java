@@ -1,5 +1,6 @@
 package com.example.danialchowdhry.ballgame;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -7,10 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements Game.OnFragmentInteractionListener, Welcome.OnFragmentInteractionListener {
-
+    String correctNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +55,26 @@ public class MainActivity extends FragmentActivity implements Game.OnFragmentInt
     }
 
     public void gameStart(View view) {
+        int rando = (int) (Math.random() * 5);
+        correctNum = ((Integer)(rando+1)).toString();
+        Bundle args = new Bundle();
         Game newFragment = new Game();
+        args.putInt("param1", rando);
+        newFragment.setArguments(args);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
+    }
+
+    public void checkAnswer(View view) {
+        TextView mTextView =  (TextView) findViewById(R.id.resultView);
+        String answer = ((EditText) findViewById(R.id.edit_message)).getText().toString();
+        if (answer.equals(correctNum)) {
+            mTextView.setTextColor(Color.GREEN);
+            mTextView.setText("Correct!");
+        } else {
+            mTextView.setTextColor(Color.RED);
+            mTextView.setText("Incorrect");
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 /**
@@ -21,11 +22,9 @@ public class Game extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static int rando;
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,8 +40,7 @@ public class Game extends Fragment {
     public static Game newInstance(String param1, String param2) {
         Game fragment = new Game();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, rando);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,16 +53,38 @@ public class Game extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            rando = getArguments().getInt(ARG_PARAM1);
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game, container, false);
+        View imview = inflater.inflate(R.layout.fragment_game, container, false);
+        ImageView image = (ImageView) imview.findViewById(R.id.ballView);
+        switch (rando) {
+            case 0:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.ball0));
+                break;
+            case 1:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.ball1));
+                break;
+            case 2:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.ball2));
+                break;
+            case 3:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.ball3));
+                break;
+            case 4:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.balls));
+                break;
+            default:
+                image.setImageDrawable(getResources().getDrawable(R.drawable.balls));
+                break;
+        }
+        return imview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
