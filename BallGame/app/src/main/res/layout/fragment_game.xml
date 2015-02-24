@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.danialchowdhry.ballgame.Game">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/ballView"
         android:layout_width="wrap_content"
